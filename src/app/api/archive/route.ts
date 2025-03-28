@@ -9,7 +9,10 @@ export async function GET(req: NextRequest) {
   if (!name) {
     return NextResponse.json({ message: "no such name" });
   }
-  const filepath = `/Users/anikin/Projects/hackaton/website/archives/converted/${name}.stl`;
+  const filepath = `${path.join(
+    __dirname,
+    `../../../../../archives/`
+  )}/converted/${name}.stl`;
   let file;
   try {
     file = fs.readFileSync(filepath);
