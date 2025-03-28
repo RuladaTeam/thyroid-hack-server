@@ -53,7 +53,10 @@ export async function POST(req: NextRequest) {
 
   console.log("success");
 
-  let command = `dicom2stl ${options} -o /Users/anikin/Projects/hackaton/website/archives/converted/${filename}-MRI.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
+  let command = `dicom2stl ${options} -o ${path.join(
+    __dirname,
+    "../../../../../archives"
+  )}/converted/${filename}-MRI.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
@@ -73,7 +76,10 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ output: stdout });
   });
 
-  command = `dicom2stl ${options} -t soft_tissue -o /Users/anikin/Projects/hackaton/website/archives/converted/${filename}-CT.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
+  command = `dicom2stl ${options} -t soft_tissue -o ${path.join(
+    __dirname,
+    "../../../../../archives"
+  )}/converted/${filename}-CT.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
