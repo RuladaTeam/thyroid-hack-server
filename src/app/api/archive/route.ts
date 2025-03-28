@@ -27,6 +27,13 @@ export async function GET(req: NextRequest) {
   headers.set("Content-disposition", `attachment; filename=${filepath}`);
   headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
 
+  console.log(
+    `Requested name: ${name}, File path: ${filepath}, Fetched file: ${file.subarray(
+      1,
+      80
+    )}}`
+  );
+
   return new Response(Buffer.from(file), {
     status: 200,
     headers: headers,
