@@ -29,8 +29,8 @@ export async function GET(req: NextRequest) {
 
   console.log(
     `Requested name: ${name}, File path: ${filepath}, Fetched file: ${file.subarray(
-      1,
-      80
+      0,
+      200
     )}}`
   );
 
