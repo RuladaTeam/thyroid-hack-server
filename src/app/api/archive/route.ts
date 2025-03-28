@@ -25,6 +25,7 @@ export async function GET(req: NextRequest) {
   const headers = new Headers();
   headers.set("Content-type", "model/stl");
   headers.set("Content-disposition", `attachment; filename=${filepath}`);
+  headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
 
   return new Response(Buffer.from(file), {
     status: 200,
