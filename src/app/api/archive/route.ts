@@ -53,7 +53,31 @@ export async function POST(req: NextRequest) {
 
   console.log("success");
 
-  let command = `dicom2stl ${options} -o ${path.join(
+  let command = "chcp 65001";
+
+  exec(
+    command,
+    { env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing command: ${error.message}`);
+        return NextResponse.json({
+          error: `Command execution failed: ${error.message}`,
+        });
+      }
+
+      if (stderr) {
+        console.error(`Command stderr: ${stderr}`);
+        return NextResponse.json({ error: `Command stderr: ${stderr}` });
+      }
+
+      // Return the output of the command
+      console.log(`Command output: ${stdout}`);
+      return NextResponse.json({ output: stdout });
+    }
+  );
+
+  command = `dicom2stl ${options} -o ${path.join(
     __dirname,
     "../../../../../archives"
   )}/converted/${filename}-MRI.stl ${path.join(
@@ -61,23 +85,27 @@ export async function POST(req: NextRequest) {
     "../../../../../archives"
   )}/${filename}.zip`;
 
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing command: ${error.message}`);
-      return NextResponse.json({
-        error: `Command execution failed: ${error.message}`,
-      });
-    }
+  exec(
+    command,
+    { env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing command: ${error.message}`);
+        return NextResponse.json({
+          error: `Command execution failed: ${error.message}`,
+        });
+      }
 
-    if (stderr) {
-      console.error(`Command stderr: ${stderr}`);
-      return NextResponse.json({ error: `Command stderr: ${stderr}` });
-    }
+      if (stderr) {
+        console.error(`Command stderr: ${stderr}`);
+        return NextResponse.json({ error: `Command stderr: ${stderr}` });
+      }
 
-    // Return the output of the command
-    console.log(`Command output: ${stdout}`);
-    return NextResponse.json({ output: stdout });
-  });
+      // Return the output of the command
+      console.log(`Command output: ${stdout}`);
+      return NextResponse.json({ output: stdout });
+    }
+  );
 
   command = `dicom2stl ${options} -t soft_tissue -o ${path.join(
     __dirname,
@@ -87,23 +115,27 @@ export async function POST(req: NextRequest) {
     "../../../../../archives"
   )}/${filename}.zip`;
 
-  exec(command, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error executing command: ${error.message}`);
-      return NextResponse.json({
-        error: `Command execution failed: ${error.message}`,
-      });
-    }
+  exec(
+    command,
+    { env: { ...process.env, PYTHONIOENCODING: "utf-8" } },
+    (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error executing command: ${error.message}`);
+        return NextResponse.json({
+          error: `Command execution failed: ${error.message}`,
+        });
+      }
 
-    if (stderr) {
-      console.error(`Command stderr: ${stderr}`);
-      return NextResponse.json({ error: `Command stderr: ${stderr}` });
-    }
+      if (stderr) {
+        console.error(`Command stderr: ${stderr}`);
+        return NextResponse.json({ error: `Command stderr: ${stderr}` });
+      }
 
-    // Return the output of the command
-    console.log(`Command output: ${stdout}`);
-    return NextResponse.json({ output: stdout });
-  });
+      // Return the output of the command
+      console.log(`Command output: ${stdout}`);
+      return NextResponse.json({ output: stdout });
+    }
+  );
 
   return NextResponse.json({ message: "Success" });
 }
