@@ -56,7 +56,10 @@ export async function POST(req: NextRequest) {
   let command = `dicom2stl ${options} -o ${path.join(
     __dirname,
     "../../../../../archives"
-  )}/converted/${filename}-MRI.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
+  )}/converted/${filename}-MRI.stl ${path.join(
+    __dirname,
+    "../../../../../archives"
+  )}/${filename}.zip`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
@@ -79,7 +82,10 @@ export async function POST(req: NextRequest) {
   command = `dicom2stl ${options} -t soft_tissue -o ${path.join(
     __dirname,
     "../../../../../archives"
-  )}/converted/${filename}-CT.stl /Users/anikin/Projects/hackaton/website/archives/${filename}.zip`;
+  )}/converted/${filename}-CT.stl ${path.join(
+    __dirname,
+    "../../../../../archives"
+  )}/${filename}.zip`;
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
