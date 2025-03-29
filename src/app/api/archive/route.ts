@@ -6,9 +6,11 @@ import { exec } from "child_process";
 
 export async function GET(req: NextRequest) {
   const name = req.nextUrl.searchParams.get("name");
+
   if (!name) {
     return NextResponse.json({ message: "no such name" });
   }
+
   const filepath = `${path.join(
     __dirname,
     `../../../../../archives/`
@@ -22,17 +24,11 @@ export async function GET(req: NextRequest) {
       message: err,
     });
   }
+
   const headers = new Headers();
   headers.set("Content-type", "model/stl");
   headers.set("Content-disposition", `attachment; filename=${filepath}`);
   headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
-
-  console.log(
-    `Requested name: ${name}, File path: ${filepath}, Fetched file: ${file.subarray(
-      0,
-      200
-    )}}`
-  );
 
   return new Response(Buffer.from(file), {
     status: 200,
@@ -62,8 +58,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: e });
   }
 
-  console.log("success");
-
   let command = "chcp 65001";
 
   exec(
@@ -83,7 +77,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Return the output of the command
-      console.log(`Command output: ${stdout}`);
+      //console.log(`Command output: ${stdout}`);
       return NextResponse.json({ output: stdout });
     }
   );
@@ -113,7 +107,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Return the output of the command
-      console.log(`Command output: ${stdout}`);
+      //console.log(`Command output: ${stdout}`);
       return NextResponse.json({ output: stdout });
     }
   );
@@ -143,7 +137,7 @@ export async function POST(req: NextRequest) {
       }
 
       // Return the output of the command
-      console.log(`Command output: ${stdout}`);
+      //console.log(`Command output: ${stdout}`);
       return NextResponse.json({ output: stdout });
     }
   );
