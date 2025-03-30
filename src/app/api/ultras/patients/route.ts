@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   const dirPath = path.join(
     __dirname,
-    `../../../../../../sonography/converted`
+    `../../../../../../public/sonography/converted`
   );
   const fileNames: string[] = [];
 

@@ -6,7 +6,7 @@ export async function GET(req: NextRequest) {
   const patient = req.nextUrl.searchParams.get("patient");
   const dirPath = path.join(
     __dirname,
-    `../../../../../../sonography/converted/${patient}`
+    `../../../../../../public/sonography/converted/${patient}`
   );
   const fileNames: string[] = [];
 

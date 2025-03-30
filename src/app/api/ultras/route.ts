@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
 
   const filepath = `${path.join(
     __dirname,
-    `../../../../../sonography/`
+    `../../../../../public/sonography/`
   )}/converted/${patient}/${name}`;
   let file;
   try {
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     filename = file.name.substring(0, file.name.length - 4);
 
     await fsPromises.appendFile(
-      path.join(__dirname, `../../../../../sonography/${file.name}`),
+      path.join(__dirname, `../../../../../public/sonography/${file.name}`),
       buffer,
       { flag: "w" }
     );
@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
 
   let command = `tar -xf ${path.join(
     __dirname,
-    `../../../../../sonography/${filename}.zip`
+    `../../../../../public/sonography/${filename}.zip`
   )} -C sonography/converted/`;
 
   console.log(command);
