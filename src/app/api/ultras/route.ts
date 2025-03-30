@@ -6,6 +6,7 @@ import { exec } from "child_process";
 
 export async function GET(req: NextRequest) {
   const name = req.nextUrl.searchParams.get("name");
+  const patient = req.nextUrl.searchParams.get("patient");
 
   if (!name) {
     return NextResponse.json({ message: "no such name" });
@@ -13,8 +14,8 @@ export async function GET(req: NextRequest) {
 
   const filepath = `${path.join(
     __dirname,
-    `../../../../../archives/`
-  )}/converted/${name}.stl`;
+    `../../../../../sonography/`
+  )}/converted/${patient}/${name}`;
   let file;
   try {
     file = fs.readFileSync(filepath);
@@ -26,8 +27,8 @@ export async function GET(req: NextRequest) {
   }
 
   const headers = new Headers();
-  headers.set("Content-type", "model/stl");
-  headers.set("Content-disposition", `attachment; filename=${filepath}`);
+  headers.set("Content-type", "video/avi");
+  headers.set("Content-disposition", `attachment; filename=${name}`);
   headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
 
   return new Response(Buffer.from(file), {
