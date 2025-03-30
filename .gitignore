@@ -2,6 +2,7 @@
 
 #build
 /archives
+/sonography
 
 # dependencies
 /node_modules

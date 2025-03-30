@@ -5,7 +5,7 @@ import { Input } from "./ui/input";
 import { useFormStatus } from "react-dom";
 import { Button } from "./ui/button";
 
-const AddFilesForm = () => {
+const AddMRIFiles = () => {
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
@@ -28,9 +28,9 @@ function SubmitButton() {
   const { pending } = useFormStatus();
   return (
     <Button disabled={pending} type="submit" className="mt-5">
-      Отправить
+      Отправить архив МРТ / КТ
     </Button>
   );
 }
 
-export default AddFilesForm;
+export default AddMRIFiles;

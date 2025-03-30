@@ -3,7 +3,7 @@ import fs from "fs";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const dirPath = path.join(__dirname, `../../../../../archives/converted`);
+  const dirPath = path.join(__dirname, `../../../../../../archives/converted`);
   const fileNames: string[] = [];
 
   const files = fs.readdirSync(dirPath);

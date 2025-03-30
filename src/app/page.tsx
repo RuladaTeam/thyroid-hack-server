@@ -1,5 +1,5 @@
-import AddFilesForm from "@/components/AddFilesForm";
-import Image from "next/image";
+import AddMRIFiles from "@/components/AddMRIFiles";
+import AddUSFiles from "@/components/AddUSFiles";
 
 export default function Home() {
   return (
@@ -7,10 +7,14 @@ export default function Home() {
       <h2 className="text-2xl font-bold text-center mb-5">Rulada Solutions</h2>
       <h1 className="text-center font-medium mb-10">
         Конвертировать DICOM файлы (МРТ, КТ) в 3D объекты для исследования с
-        помощью AR технологий
+        помощью AR технологий.
+        <br />
+        Область загрузки видеоряда УЗИ.
       </h1>
-      <p className="flex flex-col space-y-5 mb-20">
-        <span className="text-lg font-bold mb-4">Пошаговая инструкция</span>
+      <p className="flex flex-col space-y-5 mb-10">
+        <span className="text-lg font-bold mb-4">
+          Пошаговая инструкция(МРТ / КТ)
+        </span>
 
         <span className="font-bold">Шаг 1</span>
 
@@ -18,7 +22,7 @@ export default function Home() {
           Сделайте архив из папки с <b>dicom</b> файлами, затем загрузите этот
           архив в поле для загрузки файлов (под инструкцией). Называйте папку
           так, чтобы вы легко могли ее потом обнаружить. Нажмите на кнопку
-          "Загрузить файлы".
+          "Отправить архив МРТ / КТ".
         </span>
 
         <span className="font-bold">Шаг 2</span>
@@ -26,11 +30,43 @@ export default function Home() {
         <span>
           Запустите приложение на очках дополненной реальности. В главном меню
           нажмите на кнопку "Загрузить МРТ / КТ". В появившемся окошке нажмите
-          на кнопку названную так же, как и вами ранее загруженный архив.
+          на кнопку названную так же, как и вами ранее загруженный архив (таких
+          файла будет два, один будет назван "имя-CT", а второй "имя-MRI". Это
+          модели КТ и МРТ соответсвенно).
         </span>
       </p>
 
-      <AddFilesForm />
+      <AddMRIFiles />
+
+      <p className="flex flex-col space-y-5 mb-10 mt-10">
+        <span className="text-lg font-bold mb-4">
+          Пошаговая инструкция (видеоряд УЗИ)
+        </span>
+
+        <span className="font-bold">Шаг 1</span>
+
+        <span>
+          Сделайте архив из папки с файлами видеоряда{" "}
+          <b>
+            !В архиве должны находиться ТОЛЬКО видео файлы (форматы .avi, .mp4,
+            .mov и т.п)!
+          </b>
+          , затем загрузите этот архив в поле для загрузки файлов (под
+          инструкцией). Называйте папку так, чтобы вы легко могли ее потом
+          обнаружить. Нажмите на кнопку "Отправить видеоряд УЗИ".
+        </span>
+
+        <span className="font-bold">Шаг 2</span>
+
+        <span>
+          Запустите приложение на очках дополненной реальности. В главном меню
+          нажмите на кнопку "Загрузить видео". В появившемся окошке нажмите на
+          кнопку названную так же, как и вами ранее загруженный архив. В
+          соответствующем окне у вас должен появиться проигрыватель видеоряда.
+        </span>
+      </p>
+
+      <AddUSFiles />
     </div>
   );
 }
