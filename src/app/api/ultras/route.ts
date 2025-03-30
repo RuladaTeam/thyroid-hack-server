@@ -61,7 +61,7 @@ export async function POST(req: NextRequest) {
   let command = `tar -xf ${path.join(
     __dirname,
     `../../../../../public/sonography/${filename}.zip`
-  )} -C sonography/converted/`;
+  )} -C public/sonography/converted/`;
 
   console.log(command);
 
