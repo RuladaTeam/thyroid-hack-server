@@ -1,9 +1,12 @@
 import AddMRIFiles from "@/components/AddMRIFiles";
 import AddUSFiles from "@/components/AddUSFiles";
+import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="mt-10 w-full  flex flex-col">
+    <div className="mt-10 w-full  flex flex-col ">
+      <div className="w-full justify-center items-center flex">
+      <Image src="/rulada.png" alt="ЛОГО"width={200*0.58} height={200}/></div>
       <h2 className="text-2xl font-bold text-center mb-5">Rulada Solutions</h2>
       <h1 className="text-center font-medium mb-10">
         Конвертировать DICOM файлы (МРТ, КТ) в 3D объекты для исследования с
@@ -11,6 +14,7 @@ export default function Home() {
         <br />
         Область загрузки видеоряда УЗИ.
       </h1>
+      <p className="mt-10 mb-10 text-xl font-bold text-center">!НЕ НАЗЫВАТЬ АРХИВЫ КИРИЛЛИЦЕЙ!</p>
       <p className="flex flex-col space-y-5 mb-10">
         <span className="text-lg font-bold mb-4">
           Пошаговая инструкция(МРТ / КТ)

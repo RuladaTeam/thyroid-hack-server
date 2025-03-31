@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import fsPromises from "fs/promises";
-import fs from "fs";
+import fs, { stat } from "fs";
 import path from "path";
 import { exec } from "child_process";
 
@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
   const name = req.nextUrl.searchParams.get("name");
 
   if (!name) {
-    return NextResponse.json({ message: "no such name" });
+    return NextResponse.json({ message: "no such name" }, {status: 400, statusText: "Не существует такого имени"});
   }
 
   const filepath = `${path.join(
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     );
   } catch (e) {
     console.log(e);
-    return NextResponse.json({ message: e });
+    return NextResponse.json({ message: e }, {status: 400, statusText: "Ошибка, проверьте валидность данных и попробуйте снова"});
   }
 
   let command = "chcp 65001";

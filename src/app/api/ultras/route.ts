@@ -9,7 +9,7 @@ export async function GET(req: NextRequest) {
   const patient = req.nextUrl.searchParams.get("patient");
 
   if (!name) {
-    return NextResponse.json({ message: "no such name" });
+    return NextResponse.json({ message: "no such name" }, {status: 500});
   }
 
   const filepath = `${path.join(
@@ -55,7 +55,7 @@ export async function POST(req: NextRequest) {
     );
   } catch (e) {
     console.log(e);
-    return NextResponse.json({ message: e });
+    return NextResponse.json({ message: e }, {status: 500});
   }
 
   let command = `tar -xf ${path.join(
@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
 
     // Return the output of the command
     console.log(`Command output: ${stdout}`);
-    return NextResponse.json({ output: stdout });
+    return NextResponse.json({ output: stdout }, {status: 200});
   });
   return NextResponse.json({ message: "Success" });
 }
