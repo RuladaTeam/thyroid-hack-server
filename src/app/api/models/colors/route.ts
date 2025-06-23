@@ -4,15 +4,16 @@ import path from "path";
 
 export async function GET(req: NextRequest) {
   const name = req.nextUrl.searchParams.get("name");
+  const density = req.nextUrl.searchParams.get("density");
 
-  if (!name) {
+  if (!name || !density) {
     return NextResponse.json({ message: "no such name" }, {status: 400, statusText: "Не существует такого имени"});
   }
 
   const filepath = `${path.join(
     __dirname,
     `../../../../../../archives/`
-  )}/colors/${name}.bin`;
+  )}/colors/${name}_${density}.bin`;
   let file;
   try {
     file = fs.readFileSync(filepath);
