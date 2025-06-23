@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 
   const headers = new Headers();
   headers.set("Content-type", "application/octet-stream");
-  headers.set("Content-disposition", `attachment; filename=${name}.bin`);
+  headers.set("Content-disposition", `attachment; filename=${name}_${density}.bin`);
   headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
 
   return new Response(file, {
